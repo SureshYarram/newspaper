@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="./styles/main.css">
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="sidebar">
+
+        <!--DO NOT CHANGE THIS ID's-->
+
+        
+
+
+      </div>
+
+      <div id="main">
+        <!--DO NOT CHANGE THIS ID's-->
+
+      </div>
+    </div>
+  </body>
+
+</html>
+
+<script type="module">
+   import sidebar from "./components/sidebar.js";
+   import {apiCall, appendArticles, newsAppend ,getData} from "./scripts/main.js";
+   import storeSearchterm from "./scripts/search.js"
+   let sidenav=document.getElementById("sidebar");
+   sidenav.innerHTML=sidebar();
+
+   let url=`https://gnews.io/api/v4/top-headlines?token=d6df736322f22e844f9c5b1cd07ea0d2&lang=en&country=in`;
+
+    let result=apiCall(url);
+    result.then((res)=>{
+      console.log(res);
+      let main=document.getElementById("main");
+      appendArticles(res,main);
+    })
+
+    
+
+    let btn=document.getElementById("searchbutton");
+    btn.addEventListener("click",showNews);
+   function showNews(){
+    let term=document.getElementById("searchbar").value;
+       localStorage.setItem("term",JSON.stringify(term));
+       window.location.href="search.html"
+
+    }
+</script>

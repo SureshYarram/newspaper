@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/main.css">
+  </head>
+
+  <body>
+    <!--DO NOT CHANGE THIS ID's-->
+
+    <div id="container">
+      <div id="sidebar">
+        <!--add your sidebar component here-->
+      </div>
+
+      <div id="main">
+        <div id="headline">
+          <!--add headline here-->
+        </div>
+        <img id="img" src="" alt="" />
+        <!--show news image here-->
+
+
+        <div id="content">
+          <!--add news content here-->
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
+
+<script type="module">
+ import sidebar from "./components/sidebar.js";
+ import {apiCall, appendArticles, newsAppend ,getData} from "./scripts/main.js"
+
+ let sidenav=document.getElementById("sidebar");
+   sidenav.innerHTML=sidebar();
+
+   let data=JSON.parse(localStorage.getItem("article"));
+   console.log(data);
+   let heading=document.getElementById("headline");
+   let img=document.getElementById("img");
+   let des=document.getElementById("content")
+   let main=document.getElementById("main");
+   newsAppend(data,main,heading,img,des);
+
+
+   let btn=document.getElementById("searchbutton");
+    btn.addEventListener("click",showNews);
+   function showNews(){
+    let term=document.getElementById("searchbar").value;
+       localStorage.setItem("term",JSON.stringify(term));
+       window.location.href="search.html"
+
+    }
+   
+</script>
