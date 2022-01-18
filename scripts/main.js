@@ -7,8 +7,8 @@ async function apiCall(url) {
 
 }
 async function getData(term){
-    let res=await fetch(`https://gnews.io/api/v4/search?q=${term}&token=70a22b505169704e5cad137a2eb891cf`);
-    let data=res.json();
+    let res=await fetch(`https://gnews.io/api/v4/search?q=${term}&token=7bb1a6c3fea40145f35b764be1b876da`);
+    let data= await res.json();
     console.log(data);
 }
 
